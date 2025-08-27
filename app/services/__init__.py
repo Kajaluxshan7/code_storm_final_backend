@@ -1,16 +1,14 @@
 """
 Services Package
-Business logic and service layer implementations
+Business logic and external service integrations
 """
 
-# Import service classes here when they are created
-# from app.services.user_service import UserService
-# from app.services.transaction_service import TransactionService
-# from app.services.statement_service import StatementService
+from app.services.auth import AuthService
+from app.services.email import get_email_service
+from app.services.google_oauth import google_oauth_service
 
 __all__ = [
-    # Add service class names here as they are created
-    # "UserService",
-    # "TransactionService",
-    # "StatementService",
+    "AuthService",
+    "get_email_service",
+    "google_oauth_service",
 ]

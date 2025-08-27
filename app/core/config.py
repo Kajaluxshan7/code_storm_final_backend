@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     )
     
     # Application
-    PROJECT_NAME: str = "Financial Statement Processor"
+    PROJECT_NAME: str = "EduCapture"
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api/v1"
     DEBUG: bool = False
@@ -30,7 +30,7 @@ class Settings(BaseSettings):
     PORT: int = 8000
     
     # CORS
-    ALLOWED_HOSTS: List[str] = ["*"]
+    ALLOWED_HOSTS: List[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
     
     # Database
     DATABASE_URL: Optional[str] = None
@@ -38,7 +38,7 @@ class Settings(BaseSettings):
     DB_PORT: int = 5432
     DB_USER: str = "postgres"
     DB_PASSWORD: str = ""
-    DB_NAME: str = "financial_app"
+    DB_NAME: str = "educapture_db"
     
     @model_validator(mode='before')
     @classmethod
@@ -53,7 +53,7 @@ class Settings(BaseSettings):
             password = values.get('DB_PASSWORD', '')
             host = values.get('DB_HOST', 'localhost')
             port = values.get('DB_PORT', 5432)
-            db_name = values.get('DB_NAME', 'financial_app')
+            db_name = values.get('DB_NAME', 'educapture_db')
             
             values['DATABASE_URL'] = f"postgresql://{user}:{password}@{host}:{port}/{db_name}"
         
@@ -68,11 +68,38 @@ class Settings(BaseSettings):
     
     # File Storage Configuration
     MAX_FILE_SIZE: int = 20 * 1024 * 1024  # 20MB in bytes
-    ALLOWED_FILE_TYPES: List[str] = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp', '.svg']
+    ALLOWED_FILE_TYPES: List[str] = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp', '.svg', '.pdf']
     
     # Security
-    SECRET_KEY: str = "your-secret-key-change-in-production"
+    SECRET_KEY: str = "your-secret-key-change-in-production-educapture-2024"
+    ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    REFRESH_TOKEN_EXPIRE_DAYS: int = 7
+    
+    # Google OAuth
+    GOOGLE_CLIENT_ID: Optional[str] = None
+    GOOGLE_CLIENT_SECRET: Optional[str] = None
+    GOOGLE_REDIRECT_URI: str = "http://localhost:8000/api/v1/auth/google/callback"
+    
+    # Email Configuration
+    MAIL_USERNAME: Optional[str] = None
+    MAIL_PASSWORD: Optional[str] = None
+    MAIL_FROM: Optional[str] = None
+    MAIL_PORT: int = 587
+    MAIL_SERVER: Optional[str] = None
+    MAIL_FROM_NAME: str = "EduCapture"
+    MAIL_STARTTLS: bool = True
+    MAIL_SSL_TLS: bool = False
+    USE_CREDENTIALS: bool = True
+    VALIDATE_CERTS: bool = True
+    
+    # Frontend URL
+    FRONTEND_URL: str = "http://localhost:3000"
+    
+    # Cookie Settings
+    COOKIE_DOMAIN: Optional[str] = None
+    COOKIE_SECURE: bool = False  # Set to True in production with HTTPS
+    COOKIE_SAMESITE: str = "lax"
     
     
 settings = Settings()

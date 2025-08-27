@@ -1,6 +1,6 @@
 """
 FastAPI Application Entry Point
-Includes CORS, database configuration, and routing setup
+EduCapture - Educational Note Enhancement Platform
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -9,7 +9,7 @@ from contextlib import asynccontextmanager
 from app.core.config import settings
 from app.core.database import engine
 from app.core.events import startup_handler, shutdown_handler
-from app.api import health, realtime
+from app.api import health, realtime, auth
 
 
 @asynccontextmanager
@@ -25,7 +25,7 @@ def create_application() -> FastAPI:
     
     app = FastAPI(
         title=settings.PROJECT_NAME,
-        description="Financial Statement Processing MVP",
+        description="EduCapture - Upload, enhance and organize your educational notes with AI-powered tools",
         version="1.0.0",
         openapi_url=f"{settings.API_V1_STR}/openapi.json",
         lifespan=lifespan
@@ -42,6 +42,7 @@ def create_application() -> FastAPI:
 
     # Include API routers
     app.include_router(health.router, prefix=f"{settings.API_V1_STR}/health", tags=["health"])
+    app.include_router(auth.router, prefix=f"{settings.API_V1_STR}/auth", tags=["authentication"])
     app.include_router(realtime.router, prefix=f"{settings.API_V1_STR}/realtime", tags=["realtime"])
 
     return app

@@ -3,17 +3,42 @@ Schemas Package
 Pydantic models for request/response validation
 """
 
-# Import Pydantic schemas here when they are created
-# from app.schemas.user import UserCreate, UserResponse
-# from app.schemas.transaction import TransactionCreate, TransactionResponse
-# from app.schemas.statement import StatementCreate, StatementResponse
+from app.schemas.auth import (
+    UserRegisterRequest,
+    UserLoginRequest,
+    GoogleOAuthRequest,
+    GoogleOAuthCompleteRequest,
+    TokenResponse,
+    RefreshTokenRequest,
+    UserResponse,
+    UserProfileUpdateRequest,
+    UserSessionResponse,
+    SessionListResponse,
+    ChangePasswordRequest,
+    ForgotPasswordRequest,
+    ResetPasswordRequest,
+    ResendVerificationRequest,
+    VerifyEmailRequest,
+    MessageResponse,
+    ErrorResponse,
+)
 
 __all__ = [
-    # Add schema class names here as they are created
-    # "UserCreate",
-    # "UserResponse",
-    # "TransactionCreate",
-    # "TransactionResponse",
-    # "StatementCreate",
-    # "StatementResponse",
+    "UserRegisterRequest",
+    "UserLoginRequest", 
+    "GoogleOAuthRequest",
+    "GoogleOAuthCompleteRequest",
+    "TokenResponse",
+    "RefreshTokenRequest",
+    "UserResponse",
+    "UserProfileUpdateRequest",
+    "UserSessionResponse",
+    "SessionListResponse",
+    "ChangePasswordRequest",
+    "ForgotPasswordRequest",
+    "ResetPasswordRequest",
+    "ResendVerificationRequest",
+    "VerifyEmailRequest",
+    "MessageResponse",
+    "ErrorResponse",
 ]
