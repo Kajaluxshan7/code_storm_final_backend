@@ -375,7 +375,7 @@ async def test_ai_services(
             if settings.GEMINI_API_KEY:
                 import google.generativeai as genai
                 genai.configure(api_key=settings.GEMINI_API_KEY)
-                model = genai.GenerativeModel('gemini-1.5-pro')
+                model = genai.GenerativeModel('gemini-2.5-flash-lite')
                 response = model.generate_content("Test: respond with 'OK'")
                 test_results["tests"]["gemini"] = {
                     "status": "pass",
