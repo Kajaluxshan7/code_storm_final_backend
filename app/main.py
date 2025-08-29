@@ -9,7 +9,7 @@ from contextlib import asynccontextmanager
 from app.core.config import settings
 from app.core.database import engine
 from app.core.events import startup_handler, shutdown_handler
-from app.api import health, realtime, auth
+from app.api import health, realtime, auth, study_helper
 
 
 @asynccontextmanager
@@ -44,6 +44,7 @@ def create_application() -> FastAPI:
     app.include_router(health.router, prefix=f"{settings.API_V1_STR}/health", tags=["health"])
     app.include_router(auth.router, prefix=f"{settings.API_V1_STR}/auth", tags=["authentication"])
     app.include_router(realtime.router, prefix=f"{settings.API_V1_STR}/realtime", tags=["realtime"])
+    app.include_router(study_helper.router, prefix=f"{settings.API_V1_STR}", tags=["study-helper"])
 
     return app
 

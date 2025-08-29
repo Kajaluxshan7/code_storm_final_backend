@@ -101,5 +101,27 @@ class Settings(BaseSettings):
     COOKIE_SECURE: bool = False  # Set to True in production with HTTPS
     COOKIE_SAMESITE: str = "lax"
     
+    # AI Service Configuration
+    GEMINI_API_KEY: Optional[str] = None
+    GOOGLE_CLOUD_PROJECT_ID: Optional[str] = None
+    GOOGLE_APPLICATION_CREDENTIALS: Optional[str] = None  # Path to service account JSON
     
+    # AI Processing Settings
+    MAX_IMAGE_SIZE: int = 10 * 1024 * 1024  # 10MB for AI processing
+    SUPPORTED_IMAGE_FORMATS: List[str] = ["JPEG", "PNG", "WEBP", "BMP", "TIFF"]
+    QUALITY_THRESHOLD: float = 0.6  # Minimum quality score for processing
+    
+    # Text Extraction Settings
+    OCR_CONFIDENCE_THRESHOLD: float = 0.5
+    MIN_TEXT_LENGTH: int = 10  # Minimum characters for meaningful text
+    
+    # Quiz Generation Settings
+    DEFAULT_QUIZ_QUESTIONS: int = 5
+    MAX_QUIZ_QUESTIONS: int = 20
+    
+    # Rate Limiting
+    AI_REQUESTS_PER_MINUTE: int = 60
+    AI_REQUESTS_PER_HOUR: int = 1000
+
+
 settings = Settings()
